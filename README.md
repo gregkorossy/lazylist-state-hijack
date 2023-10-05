@@ -58,6 +58,21 @@ LazyColumn(
 }
 ```
 
+## ProGuard / R8
+
+The library contains the ProGuard rules necessary for it to work with reflection, but in case you need them separately, here they are:
+
+```
+-keepclassmembers class androidx.compose.foundation.lazy.LazyListState {
+    private androidx.compose.foundation.lazy.LazyListScrollPosition scrollPosition;
+}
+
+-keepclassmembers class androidx.compose.foundation.lazy.LazyListScrollPosition {
+    private androidx.compose.runtime.MutableIntState index$delegate;
+    private java.lang.Object lastKnownFirstItemKey;
+}
+```
+
 ## Compatibility
 
 This lib was tested against the latest versions of the `compose-foundation` artifact, namely `1.5.3` and `1.6.0-alpha07`, but should work with earlier versions as well.
